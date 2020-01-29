@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
 
@@ -19,8 +20,7 @@ import reactor.core.publisher.Flux;
 
 
 
-
-@EnableReactiveMongoRepositories
+@EnableEurekaClient
 @SpringBootApplication
 public class SpringbootClienteApplication implements CommandLineRunner{
 	
@@ -45,14 +45,15 @@ public class SpringbootClienteApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		template.dropCollection(Client.class).subscribe();
 		template.dropCollection(TypeClient.class).subscribe();
-		Client prod1 = new Client(); 
-		Client prod2 = new Client();
+		
 		
 		TypeClient type1 = new TypeClient();
+		type1.setValtip(1);
 		type1.setNombre("Personal");
 		
 		
 		TypeClient type2 = new TypeClient();
+		type2.setValtip(2);
 		type2.setNombre("Empresarial");
 		
 		Flux.just(type1, type2)

@@ -37,7 +37,7 @@ public class ClientController {
     
     
 
-    @PutMapping("/list/{id}")
+    @PutMapping("/{id}")
     private Mono<ResponseEntity<Client>> update(@PathVariable("id") String id, @RequestBody Client client) {
         return this.clientService.update(id, client)
                 .flatMap(clientuct1 -> Mono.just(ResponseEntity.ok(clientuct1)))
@@ -53,7 +53,7 @@ public class ClientController {
        
     }
     
-    @GetMapping(value ="/list/{id}")
+    @GetMapping(value ="/{id}")
     private Mono<Client> findClient(@PathVariable("id") String id) {
     	
   return this.clientService.findById(id);  	

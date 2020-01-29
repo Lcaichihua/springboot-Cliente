@@ -14,8 +14,12 @@ public @Data class TypeClient {
 	@Id
 	private String id ;
 	private String nombre ;
-	public TypeClient(String nombre) {
+	private Integer valtip;
+	public TypeClient(String nombre, Integer valtip) {
+		super();
 		this.nombre = nombre;
+		this.valtip = valtip;
 	}
-	
+
+
 }
