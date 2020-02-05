@@ -56,11 +56,27 @@ public class SpringbootClienteApplication implements CommandLineRunner{
 		type2.setValtip(2);
 		type2.setNombre("Empresarial");
 		
+		TypeClient type3 = new TypeClient();
+		type2.setValtip(3);
+		type2.setNombre("Person Vip");
+		
+		TypeClient type4 = new TypeClient();
+		type2.setValtip(4);
+		type2.setNombre("PYME");
+		
+		TypeClient type5 = new TypeClient();
+		type2.setValtip(5);
+		type2.setNombre("Corporative");
+		
+		
 		Flux.just(type1, type2)
 		.flatMap(tipP -> typeClientRepo.save(tipP))
 		.thenMany(
 				Flux.just(new Client("47607058","Larry","Caichihua",true ,  type1),
-						  new Client("24678905","Jordy","Alarcon",false ,  type2)
+						  new Client("24678905","Jordy","Alarcon",true ,  type2),
+						  new Client("12345678","jesus","Sanchez",true ,  type3),
+						  new Client("46767477","Rocio","Silva",true ,  type4),
+						  new Client("78468464","Angelica","Ramirez",true ,  type5)
 				
 					)	
 				).flatMap(pro -> clienttRepo.save(pro))
